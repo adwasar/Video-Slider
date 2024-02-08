@@ -1,0 +1,102 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  min-height: 100vh;
+  background: linear-gradient(rgb(19, 17, 34) 60%, rgb(4, 4, 4));
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 20px;
+  max-width: 844px;
+}
+
+.slider {
+  position: relative;
+  height: 132px;
+}
+
+.slider-list {
+  margin-top: 20px;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+}
+
+.list-item {
+  box-sizing: border-box;
+  display: grid;
+  align-content: center;
+  text-align: center;
+  flex: 0 0 calc(132px * 1.6);
+  background: rgb(183, 183, 183);
+  box-shadow: inset 0 0 4px rgb(19, 17, 34);
+}
+
+.btn-slider {
+  position: absolute;
+  display: grid;
+  align-content: center;
+  width: 50px;
+  height: 100%;
+}
+
+.btn-slider:hover .arrow {
+  border-bottom: 3px solid rgba(255, 255, 255, 1);
+  border-left: 3px solid rgba(255, 255, 255, 1);
+}
+
+.btn-back {
+  background: linear-gradient(90deg, rgb(19, 17, 34, .6), rgb(19, 17, 34, .01));
+  left: 0;
+  top: 0;
+}
+
+.btn-back:hover {
+  background: linear-gradient(90deg, rgb(19, 17, 34, .9), rgb(0, 0, 0, 0.04));
+}
+
+.btn-next {
+  background: linear-gradient(270deg, rgb(19, 17, 34, .6), rgb(19, 17, 34, .01));
+  right: 0;
+  top: 0;
+}
+
+.btn-next:hover {
+  background: linear-gradient(270deg, rgb(19, 17, 34, .9), rgb(0, 0, 0, 0.04));
+  right: 0;
+  top: 0;
+}
+
+.arrow {
+  position: relative;
+  display: block;
+  height: 25px;
+  width: 25px;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.5);
+  border-left: 3px solid rgba(255, 255, 255, 0.5);
+}
+
+.arrow-left { 
+  left: 16px;
+  transform: rotate(45deg);
+}
+
+.arrow-right { 
+  left: 8px;
+  transform: rotate(225deg);
+}
