@@ -21,11 +21,24 @@ const sliderStep = 228
 
 let stepIndex = 0
 
-btnClose.addEventListener('click', () => {
+const removeCurrentClass = () => {
   const popupItems = document.querySelectorAll('.popup-item')
   popupItems.forEach((item) => {
     item.classList.remove('current')
   })
+}
+
+const setCurrentClass = (i) => {
+  const popupItems = document.querySelectorAll('.popup-item')
+  popupItems[i].classList.add('current')
+}
+
+const play = (id) => {
+  player.src = `https://player.vimeo.com/video/${id}?autoplay=1`
+}
+
+btnClose.addEventListener('click', () => {
+  removeCurrentClass()
   player.src = ''
   popup.close()
 })
@@ -33,10 +46,9 @@ btnClose.addEventListener('click', () => {
 videoIds.forEach((id, i) => {
   const sliderItem = document.createElement('li')
   sliderItem.addEventListener('click', (e) => {
-    const popupItems = document.querySelectorAll('.popup-item')
     popup.show()
-    player.src = `https://player.vimeo.com/video/${id}?autoplay=1`
-    popupItems[i].classList.add('current')
+    play(id)
+    setCurrentClass(i)
   })
   sliderItem.classList.add('list-item')
   sliderList.appendChild(sliderItem)
@@ -48,12 +60,9 @@ videoIds.forEach((id, i) => {
   popupItem.classList.add('popup-item')
   popupNav.appendChild(popupItem)
   popupItem.addEventListener('click', () => {
-    const popupItems = document.querySelectorAll('.popup-item')
-    popupItems.forEach((item) => {
-      item.classList.remove('current')
-    })
-    popupItems[i].classList.add('current')
-    player.src = `https://player.vimeo.com/video/${id}?autoplay=1`
+    removeCurrentClass()
+    setCurrentClass(i)
+    play(id)
   })
 
   fetch(`https://api.vimeo.com/videos/${id}`, {
