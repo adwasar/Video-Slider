@@ -1,5 +1,7 @@
 const sliderList = document.querySelector('.slider-list')
 const popup = document.querySelector('.popup')
+const popupNav = document.querySelector('.popup-nav')
+const player = document.querySelector('.player')
 const btnBack = document.querySelector('.btn-back')
 const btnNext = document.querySelector('.btn-next')
 const btnClose = document.querySelector('.btn-close')
@@ -19,9 +21,41 @@ const sliderStep = 228
 
 let stepIndex = 0
 
-btnClose.addEventListener('click', () => popup.close())
+btnClose.addEventListener('click', () => {
+  const popupItems = document.querySelectorAll('.popup-item')
+  popupItems.forEach((item) => {
+    item.classList.remove('current')
+  })
+  player.src = ''
+  popup.close()
+})
 
-videoIds.forEach((id) => {
+videoIds.forEach((id, i) => {
+  const sliderItem = document.createElement('li')
+  sliderItem.addEventListener('click', (e) => {
+    const popupItems = document.querySelectorAll('.popup-item')
+    popup.show()
+    player.src = `https://player.vimeo.com/video/${id}?autoplay=1`
+    popupItems[i].classList.add('current')
+  })
+  sliderItem.classList.add('list-item')
+  sliderList.appendChild(sliderItem)
+
+  const preview = document.createElement('img')
+  sliderItem.appendChild(preview)
+
+  const popupItem = document.createElement('li')
+  popupItem.classList.add('popup-item')
+  popupNav.appendChild(popupItem)
+  popupItem.addEventListener('click', () => {
+    const popupItems = document.querySelectorAll('.popup-item')
+    popupItems.forEach((item) => {
+      item.classList.remove('current')
+    })
+    popupItems[i].classList.add('current')
+    player.src = `https://player.vimeo.com/video/${id}?autoplay=1`
+  })
+
   fetch(`https://api.vimeo.com/videos/${id}`, {
     headers: {
       Authorization: `Bearer ${tokenKay}`,
@@ -35,16 +69,7 @@ videoIds.forEach((id) => {
     })
     .then((data) => {
       if (data.pictures && data.pictures.sizes[3]) {
-        const listItem = document.createElement('li')
-        listItem.addEventListener('click', (e) => {
-          popup.show()
-        })
-        listItem.classList.add('list-item')
-        sliderList.appendChild(listItem)
-
-        const preview = document.createElement('img')
         preview.src = data.pictures.sizes[3].link
-        listItem.appendChild(preview)
       }
     })
     .catch((err) => console.error(err.message))
