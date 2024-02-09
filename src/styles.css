@@ -2,7 +2,7 @@ body {
   margin: 0;
   overflow: hidden;
   min-height: 100vh;
-  background: linear-gradient(rgb(19, 17, 34) 60%, rgb(4, 4, 4));
+  background: linear-gradient(#131122 60%, #040404);
 }
 
 ul {
@@ -112,13 +112,12 @@ button {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  /* width: 90%;
-  height: max-content; */
   margin: 0;
-  padding: 20px 60px;
+  padding: 50px 0 0;
   color: #fff;
-  background-color: #141313;
+  background-color: #131122dc;
   border: none;
+  box-shadow: 0 0 25px black;
 }
 
 .player {
@@ -154,7 +153,7 @@ button {
 
 .popup-nav {
   display: flex;
-  margin: 20px auto 0;
+  margin: 20px auto;
   width: 350px;
   justify-content: space-between;
 }
@@ -165,6 +164,7 @@ button {
   background-color: #fff;
   border-radius: 50%;
   cursor: pointer;
+  transition: .4s;
 }
 
 .popup-item.current {
