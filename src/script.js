@@ -1,6 +1,8 @@
 const sliderList = document.querySelector('.slider-list')
+const popup = document.querySelector('.popup')
 const btnBack = document.querySelector('.btn-back')
 const btnNext = document.querySelector('.btn-next')
+const btnClose = document.querySelector('.btn-close')
 
 const tokenKay = 'd2377b8aff3d70561aa2fb1e289397ce'
 const videoIds = [
@@ -17,6 +19,8 @@ const sliderStep = 228
 
 let stepIndex = 0
 
+btnClose.addEventListener('click', () => popup.close())
+
 videoIds.forEach((id) => {
   fetch(`https://api.vimeo.com/videos/${id}`, {
     headers: {
@@ -30,8 +34,11 @@ videoIds.forEach((id) => {
       return response.json()
     })
     .then((data) => {
-      if (data.pictures) {
+      if (data.pictures && data.pictures.sizes[3]) {
         const listItem = document.createElement('li')
+        listItem.addEventListener('click', (e) => {
+          popup.show()
+        })
         listItem.classList.add('list-item')
         sliderList.appendChild(listItem)
 
@@ -39,10 +46,8 @@ videoIds.forEach((id) => {
         preview.src = data.pictures.sizes[3].link
         listItem.appendChild(preview)
       }
-
-      console.log(data.pictures.sizes[2])
     })
-    .catch((err) => console.log(err.message))
+    .catch((err) => console.error(err.message))
 })
 
 btnBack.addEventListener('click', () => {

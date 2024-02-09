@@ -105,3 +105,43 @@ button {
   left: 8px;
   transform: rotate(225deg);
 }
+
+.popup {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 80%;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  background-color: #141313;
+  border: none;
+}
+
+.btn-close { 
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  right: 15px;
+  top: 15px;
+  background-color: #ffffff00;
+}
+
+.btn-close .tt, .btn-close .bb {
+  position: absolute;
+  display: inline-block;
+  width: 100%;
+  border-bottom: 3px solid #fff;
+  left: 0%;
+  top: calc(50% - 2px);
+}
+
+.btn-close .tt {
+  transform: rotate(45deg);
+}
+
+.btn-close .bb {
+  transform: rotate(-45deg);
+}
